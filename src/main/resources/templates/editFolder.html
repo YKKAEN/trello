@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout
+http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main">
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-6 mx-auto mt-4">
+            <form th:action="@{'/trello/editfolder/' + ${editFolder.id}}" method="post" class="mx-auto mb-5"
+                  th:object="${editFolder}">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h3>EDIT FOLDER</h3>
+                    <div class="mb-3">
+                        <label class="col-form-label">FOLDER NAME:</label>
+                        <input type="text" class="form-control" placeholder="Folder Name ..." name="folderName" th:field="*{foldersName}">
+                    </div>
+                    <div class="mt-3">
+                        <a th:href="@{'/trello/index'}" class="btn btn-secondary">Close</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

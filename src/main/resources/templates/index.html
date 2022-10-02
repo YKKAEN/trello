@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout
+http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main">
+<div layout:fragment="content">
+    <div class="add-task" style="margin-top: 25px">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">+ New Folder
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>ADD NEW FOLDER</strong></h5>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{'/trello/addfolder'}" method="post">
+                            <div class="mb-3">
+                                <label class="col-form-label">FOLDER NAME:</label>
+                                <input type="text" class="form-control" placeholder="Folder Name ..." name="folderName">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                                <button type="submit" class="btn btn-primary">ADD FOLDER</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-top: 25px" th:each="folder : ${folders}">
+        <div class="card-body">
+                <h5 class="card-title" style="margin-top: 10px" th:text="${folder.foldersName}"></h5>
+                <a class="btn btn-primary" style="margin-top: 10px; margin-bottom: 10px" th:href="@{'/trello/details/' + ${folder.id}}">Details</a>
+                <a class="btn btn-primary" style="margin-top: 10px; margin-bottom: 10px" th:href="@{'/trello/editfolder/' + ${folder.id}}">Edit</a>
+                <a class="btn btn-primary" style="margin-top: 10px; margin-bottom: 10px" th:href="@{'/trello/deletefolder/' + ${folder.id}}">Delete</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
