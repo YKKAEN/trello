@@ -21,8 +21,6 @@ public class TasksController {
 
     @GetMapping(value = "/tasks")
     public String tasks(Model model) {
-        List<Folders> folders = foldersRepository.findAll();
-        model.addAttribute("folders", folders);
         List<Tasks> tasks = tasksRepository.findAll();
         model.addAttribute("tasks", tasks);
         return "/details";

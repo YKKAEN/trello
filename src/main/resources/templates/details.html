@@ -5,6 +5,36 @@
 http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main">
 <div layout:fragment="content">
     <div class="add-task" style="margin-top: 25px">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">+ Add Category
+        </button>
+        <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" ><strong>ASSIGN CATEGORY</strong></h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label"><strong>CATEGORY NAME:</strong></label>
+                                <select class="form-control" name="courseId">
+                                    <option th:each="crs : ${courseList}"
+                                            th:text="${crs.course_name} + ' - ' + ${crs.course_price} + ' ' + USD"
+                                            th:value="${crs.id}"
+                                            th:selected="${editRequest.id==crs.id}"></option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                                <button type="submit" class="btn btn-primary">ADD FOLDER</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="add-task" style="margin-top: 25px">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">+ New Task
         </button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

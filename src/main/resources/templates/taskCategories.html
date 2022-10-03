@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout
+http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main">
+<div layout:fragment="content">
+    <h3 class="fw-bold mt-3">CATEGORIES</h3>
+    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskCategory">+ Add Category</a>
+    <div class="row mt-3">
+        <div class="container">
+            <table class="table table-striped table-group-divider">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">CATEGORIES NAME</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="taskcategory : ${taskCategories}">
+                    <th scope="row" th:text="${taskcategory.id}"></th>
+                    <td th:text="${taskcategory.taskCategoriesName}"></td>
+                    <td><a th:href="@{'/trello/edittaskcategories/' + ${taskcategory.id}}"
+                           class="btn btn-warning" style="margin-left: 70%">Edit</a></td>
+                    <td><a th:href="@{'/trello/deletetaskcategory/' + ${taskcategory.id}}"
+                           class="btn btn-danger">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<!--Modal-->
+<div class="modal fade" id="addTaskCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ASSIGN CATEGORY</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{'/trello/addtaskcategories'}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">CATEGORY NAME:</label>
+                        <input type="text" class="form-control" name="taskCategoryName">
+                    </div>
+                    <div class="modal-footer">
+                        <a th:href="@{'/trello/taskcategories'}" class="btn btn-secondary">Close</a>
+                        <button type="submit" class="btn btn-primary">ADD</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

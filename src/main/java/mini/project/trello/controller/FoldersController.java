@@ -26,7 +26,7 @@ public class FoldersController {
     TasksRepository tasksRepository;
 
     @GetMapping(value = "/index")
-    public String folders(Model model) {
+    public String getAllFolders(Model model) {
         List<Folders> folders = foldersRepository.findAll();
         model.addAttribute("folders", folders);
         return "index";
